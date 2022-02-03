@@ -22,8 +22,6 @@ services:
       - ./conf/prometheus/prometheus.yml:/prometheus/prometheus.yml
     command: 
       - --config.file=/prometheus/prometheus.yml # Especificamos el archivo de configuracion
-    depends_on:
-      - prom_mysql_exporter
     ports:
       - "9090:9090"
       
