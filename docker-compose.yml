@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+# GRAFANA
+  grafana:
+    image: grafana/grafana:7.4.2
+    container_name: grafana
+    volumes:
+      - ./conf/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./conf/grafana/dashboard-mysql.json:/etc/grafana/provisioning/dashboards/dashboard-mysql.json
+      - ./conf/grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: root # Usuario de la web
+      GF_SECURITY_ADMIN_PASSWORD: root # Pass de la web
+      GF_INSTALL_PLUGINS: percona-percona-app # Instalar el plugin de prometheus
+      
+      
+  # PROMETHEUS
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./conf/prometheus/prometheus.yml:/prometheus/prometheus.yml
+    command: 
+      - --config.file=/prometheus/prometheus.yml # Especificamos el archivo de configuracion
+    depends_on:
+      - prom_mysql_exporter
+    ports:
+      - "9090:9090"
+      
+      
