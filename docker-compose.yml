@@ -6,8 +6,6 @@ services:
     container_name: grafana
     volumes:
       - ./conf/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
-      - ./conf/grafana/dashboard-mysql.json:/etc/grafana/provisioning/dashboards/dashboard-mysql.json
-      - ./conf/grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
     ports:
       - "3000:3000"
     environment:
