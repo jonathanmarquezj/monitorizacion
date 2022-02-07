@@ -24,5 +24,11 @@ services:
       - --config.file=/prometheus/prometheus.yml # Especificamos el archivo de configuracion
     ports:
       - "9090:9090"
-      
-      
+  
+  # SNMP EXPORTE
+  snmp-exporter:
+    image: amkay/snmp-exporter
+    volumes:
+      - ./conf/snmp_exporter/:/etc/snmp_exporter/
+    expose:
+      - 9116
