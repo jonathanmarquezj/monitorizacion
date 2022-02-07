@@ -27,7 +27,7 @@ services:
   
   # SNMP EXPORTE
   snmp-exporter:
-    image: amkay/snmp-exporter
+    image: prom/snmp-exporter
     volumes:
       - ./conf/snmp_exporter/:/etc/snmp_exporter/
     expose:
