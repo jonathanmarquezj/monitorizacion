@@ -31,4 +31,4 @@ services:
     volumes:
       - ./conf/snmp_exporter/:/etc/snmp_exporter/
     expose:
-      - 9116
+      - "9116:9116"
